@@ -1,0 +1,4 @@
+(Opsional) Taruh file musik latar di sini dengan nama: lagu.mp3
+Musik mulai berputar saat kado di halaman pertama diketuk.
+Kalau tidak mau pakai musik latar, isi musikLatar: "" di CONFIG.
+File ini boleh dihapus.
