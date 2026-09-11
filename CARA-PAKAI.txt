@@ -1,0 +1,54 @@
+=========================================
+  WEB KEJUTAN ULANG TAHUN — CARA PAKAI
+=========================================
+
+ISI FOLDER
+  index.html      -> halaman kejutannya
+  buat-qr.html    -> alat pembuat QR code (dibuka di laptop/HP kamu sendiri)
+  foto/           -> taruh foto di sini
+  musik/          -> (opsional) taruh lagu.mp3 di sini
+
+1) SIAPKAN FOTO
+   Beri nama foto1.jpg sampai foto8.jpg lalu masukkan ke folder foto/.
+   Selama foto belum ada, halaman menampilkan kotak bergaris
+   bertuliskan nama file yang dibutuhkan — jadi kamu tahu foto mana
+   masuk ke mana.
+
+2) UBAH TEKS
+   Buka index.html pakai VS Code / Notepad. Di bagian paling atas ada
+   blok "BAGIAN YANG BISA KAMU UBAH". Ganti:
+   - namaPenerima, umur, tanggalUltah
+   - galeri (foto + tulisan di bawahnya, boleh tambah/kurangi)
+   - surat (sapaan, isi, penutup, tanda tangan)
+   - playlist (tempel link YouTube lengkap)
+   - kupon (hadiah yang digosok)
+   - kodeRahasia (opsional, 4 angka untuk mengunci halaman)
+   Jangan hapus tanda kutip, koma, atau kurung kurawal.
+
+3) TES DI LAPTOP
+   Klik dua kali index.html. Semua fitur bisa dicoba, kecuali video
+   YouTube yang kadang baru mau jalan setelah halamannya di-hosting.
+
+4) UPLOAD (HOSTING) — GITHUB PAGES, GRATIS
+   a. Buat akun di github.com, lalu buat repository baru (Public),
+      misalnya bernama: kejutan
+   b. Klik "uploading an existing file", seret SEMUA isi folder ini
+      (index.html harus di paling luar, bukan di dalam subfolder).
+      Klik "Commit changes".
+   c. Masuk Settings -> Pages -> Source: "Deploy from a branch",
+      Branch: main, folder: / (root) -> Save.
+   d. Tunggu 1–3 menit. Link-nya akan jadi:
+      https://USERNAME.github.io/kejutan/
+   Alternatif lain: Netlify atau Vercel (seret folder, perlu akun).
+
+5) BUAT QR CODE
+   Buka buat-qr.html, tempel link dari langkah 4, pilih warna & gaya,
+   lalu klik "Unduh gambar QR". Scan dulu pakai HP sebelum dicetak.
+   Kalau gaya "Lucu" susah terbaca di HP tertentu, pakai gaya "Klasik".
+
+CATATAN PRIVASI
+   - Siapa pun yang punya link/QR bisa membuka halaman ini.
+   - Repository GitHub yang Public juga bisa dilihat orang lain,
+     termasuk foto-fotonya.
+   - kodeRahasia hanya pengaman ringan (orang yang paham kode bisa
+     melihatnya di source), jadi jangan pakai foto yang terlalu pribadi.
