@@ -1,0 +1,9 @@
+Taruh foto di folder ini dengan nama:
+foto1.jpg, foto2.jpg, foto3.jpg, ... foto8.jpg
+
+Nama harus sama persis dengan yang tertulis di CONFIG (index.html),
+termasuk huruf besar/kecil. "Foto1.JPG" dan "foto1.jpg" dianggap berbeda.
+
+Tips: kecilkan ukuran foto (sekitar 1080 px, di bawah 500 KB)
+supaya halaman cepat terbuka di HP. Bisa pakai squoosh.app atau tinypng.com.
+File ini boleh dihapus.
