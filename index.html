@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#BFE6FF">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Psst… ada kiriman buat kamu 🎁</title>
+
+<!-- =====================================================================
+     ✏️  BAGIAN YANG BISA KAMU UBAH  ✏️
+     Ganti teks & nama file foto di bawah ini. Simpan foto di folder "foto/".
+     Nama file harus SAMA PERSIS (huruf besar/kecil berpengaruh saat di-hosting).
+     Halaman ini didesain untuk 4 foto saja: foto1.jpg – foto4.jpg.
+     ===================================================================== -->
+<script>
+const CONFIG = {
+  // Nama yang muncul besar di halaman
+  namaPenerima: "Hey Cila",
+
+  // Kunci halaman (opsional). Isi 4 angka, misalnya "2809".
+  // Kosongkan "" kalau tidak mau pakai kunci.
+  kodeRahasia: "",
+  petunjukKode: "4 angka yang kamu tahu",
+
+  // Tanggal sejak kalian dekat/kenal, buat hitungan hari (opsional, kosongkan "" jika tidak perlu)
+  tanggalJadian: "2024-02-14",
+
+  // Musik latar (opsional). Taruh file mp3 di folder "musik/".
+  // Kosongkan "" kalau tidak mau pakai musik latar.
+  musikLatar: "musik/lagu.mp3",
+
+  // Galeri — didesain pas buat 4 foto. Foto & tulisannya bebas diganti.
+  galeri: [
+    { foto: "foto/foto1.jpg", tulisan: "Momen ini favoritku" },
+    { foto: "foto/foto2.jpg", tulisan: "Senyum yang aku suka" },
+    { foto: "foto/foto3.jpg", tulisan: "Hari yang seru bareng" },
+    { foto: "foto/foto4.jpg", tulisan: "Kamu, selalu" }
+  ],
+
+  // Surat (fotonya boleh pakai salah satu dari 4 foto di atas)
+  surat: {
+    sapaan: "Hai kamu,",
+    isi: `Hari ini aku cuma mau bikin sesuatu yang kecil buat kamu. Nggak ada acara besar, cuma halaman sederhana yang isinya foto-foto dan beberapa kata yang pengen aku sampein dari dulu.
+
+Aku tahu belakangan ini banyak hal yang bikin capek. Tapi aku lihat kamu tetap jalan, tetap berusaha, dan itu sudah luar biasa. Kadang kamu nggak perlu jadi kuat terus — istirahat juga bagian dari usaha.
+
+Makasih ya, sudah jadi kamu yang sekarang. Yang tetap baik walau lagi capek, yang tetap peduli walau lagi banyak pikiran. Aku bangga sama kamu, lebih dari yang pernah aku bilang.
+
+Semangat terus, ya. Aku di sini, kalau kamu butuh siapa pun.`,
+    penutup: "Peluk jauh dari,",
+    tandaTangan: "Aku",
+    foto: "foto/foto2.jpg"
+  },
+
+  // Playlist — tempel link YouTube lengkap (contoh: https://youtu.be/xxxxxxxxxxx)
+  playlist: [
+    { judul: "Lagu buat kamu dari aku", penyanyi: "Nama penyanyi", youtube: "https://youtu.be/fMLDOTZ_rjE?si=b0V3zjI3g_lYCjvj" },
+    { judul: "Lagu Kesukaan kamu", penyanyi: "Nama penyanyi", youtube: "" },
+    { judul: "Lagu buat nemenin harimu biar semangat", penyanyi: "Nama penyanyi", youtube: "" }
+  ],
+
+  // Kartu semangat (digosok untuk dibaca) — boleh tambah/kurangi/ubah
+  semangat: [
+    { ikon: "🌟", judul: "Kamu udah hebat", catatan: "sejauh ini, dengan caramu sendiri" },
+    { ikon: "💪", judul: "Boleh capek", catatan: "tapi jangan berhenti, ya" },
+    { ikon: "🌈", judul: "Semua akan baik-baik saja", catatan: "pelan-pelan aja, nggak apa-apa" },
+    { ikon: "🤍", judul: "Kamu nggak sendiri", catatan: "ada aku, kapan pun butuh" }
+  ],
+
+  // Halaman penutup (fotonya boleh pakai salah satu dari 4 foto di atas)
+  fotoAkhir: "foto/foto4.jpg",
+  pesanAkhir: "Kamu boleh capek, tapi jangan berhenti percaya sama diri sendiri. Aku selalu di sini buat dengerin dan nemenin, kapan pun kamu butuh."
+};
+</script>
+<!-- ===================== AKHIR BAGIAN YANG BISA DIUBAH ===================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Sniglet:wght@400;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --langit:#BFE6FF;
+  --langit-atas:#9FD6FF;
+  --awan:#FFFFFF;
+  --tinta:#3A2B5C;
+  --stroberi:#FF7AA8;
+  --lemon:#FFE066;
+  --mint:#7DDBB8;
+  --lavender:#C3B1FF;
+  --persik:#FFB38A;
+  --garis:3px solid var(--tinta);
+  --bayang:0 6px 0 var(--tinta);
+  --huruf:'Sniglet', 'Baloo 2', 'Comic Sans MS', system-ui, sans-serif;
+  --tulisan:'Gaegu', 'Comic Sans MS', cursive;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{
+  font-family:var(--huruf);
+  color:var(--tinta);
+  background:linear-gradient(180deg,var(--langit-atas) 0%,var(--langit) 45%,#E4F5FF 100%);
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,[tabindex]:focus-visible{outline:3px dashed var(--stroberi);outline-offset:4px}
+img{display:block;max-width:100%}
+
+/* ---------- Langit & awan ---------- */
+.langit{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.awan{
+  position:absolute;width:var(--w,130px);height:calc(var(--w,130px)*.34);
+  background:var(--awan);border-radius:999px;opacity:.92;
+  animation:hanyut var(--t,70s) linear infinite;animation-delay:var(--d,0s);
+}
+.awan::before,.awan::after{content:"";position:absolute;background:var(--awan);border-radius:50%}
+.awan::before{width:48%;height:130%;left:14%;bottom:30%}
+.awan::after{width:36%;height:100%;right:14%;bottom:40%}
+@keyframes hanyut{from{transform:translateX(-30vw)}to{transform:translateX(130vw)}}
+.kilau{position:absolute;color:#fff;font-size:var(--s,14px);animation:kedip 3s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes kedip{0%,100%{opacity:.2;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+
+/* ---------- Adegan ---------- */
+.adegan{
+  position:fixed;inset:0;z-index:2;display:flex;flex-direction:column;
+  padding:max(20px,env(safe-area-inset-top)) 18px max(28px,env(safe-area-inset-bottom));
+  overflow-y:auto;overflow-x:hidden;
+  opacity:0;visibility:hidden;transform:scale(.97);
+  transition:opacity .45s ease,transform .45s cubic-bezier(.3,1.4,.5,1),visibility 0s linear .45s;
+}
+.adegan.aktif{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s cubic-bezier(.3,1.4,.5,1)}
+.isi{margin:auto;width:100%;max-width:560px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px}
+.isi.lebar{max-width:880px}
+
+/* ---------- Tulisan stiker ---------- */
+.stiker{
+  font-weight:800;line-height:1;margin:0;letter-spacing:.01em;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.08em .3em;
+}
+.stiker .kata span{
+  display:inline-block;
+  text-shadow:
+    3px 0 var(--tinta),-3px 0 var(--tinta),0 3px var(--tinta),0 -3px var(--tinta),
+    2px 2px var(--tinta),-2px -2px var(--tinta),2px -2px var(--tinta),-2px 2px var(--tinta),
+    0 8px var(--tinta),2px 7px var(--tinta),-2px 7px var(--tinta);
+  transform:rotate(var(--r,0deg));
+  animation:loncat .6s cubic-bezier(.3,1.8,.5,1) both;animation-delay:var(--dl,0s);
+}
+.stiker .kata{display:inline-flex;white-space:nowrap;gap:0 .03em}
+@keyframes loncat{from{transform:translateY(40px) scale(.3) rotate(0);opacity:0}to{transform:rotate(var(--r,0deg));opacity:1}}
+.judul-kecil{font-weight:800;font-size:clamp(1.15rem,4.6vw,1.5rem);margin:0}
+.tangan{font-family:var(--tulisan);font-size:1.35rem;line-height:1.25;margin:0}
+
+/* ---------- Tombol ---------- */
+.tombol{
+  font-weight:800;font-size:1.1rem;background:var(--lemon);border:var(--garis);border-radius:999px;
+  padding:.75em 1.6em;box-shadow:var(--bayang);transition:transform .12s,box-shadow .12s;
+}
+.tombol:hover{transform:translateY(-2px);box-shadow:0 8px 0 var(--tinta)}
+.tombol:active{transform:translateY(4px);box-shadow:0 2px 0 var(--tinta)}
+.tombol.pink{background:var(--stroberi)}
+.tombol.putih{background:#fff}
+.bilah{width:100%;display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.tombol-kembali{font-weight:800;font-size:1rem;background:#fff;border:var(--garis);border-radius:999px;padding:.45em 1em;box-shadow:0 4px 0 var(--tinta)}
+.tombol-kembali:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+.bilah h2{margin:0;font-size:clamp(1.25rem,5vw,1.7rem);font-weight:800;text-align:left}
+
+/* ---------- Foto & placeholder ---------- */
+.foto{position:relative;overflow:hidden;background:
+  repeating-linear-gradient(-45deg,#FFE3EE 0 12px,#FFF3F8 12px 24px);}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto.kosong img{display:none}
+.foto.kosong::after{
+  content:"📷\A" attr(data-nama);white-space:pre;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-family:var(--huruf);font-size:.8rem;line-height:1.5;color:var(--tinta);opacity:.75;padding:4px;
+}
+.polaroid{background:#fff;border:var(--garis);padding:7px 7px 0;box-shadow:0 5px 0 var(--tinta);border-radius:6px;position:relative}
+.polaroid .foto{aspect-ratio:1/1;border:2px solid var(--tinta);border-radius:3px}
+.polaroid figcaption{font-family:var(--tulisan);font-weight:700;font-size:1.05rem;line-height:1.15;padding:7px 2px 9px;min-height:2.3em;display:flex;align-items:center;justify-content:center}
+.selotip{position:absolute;top:-12px;left:50%;width:62px;height:22px;transform:translateX(-50%) rotate(-4deg);
+  background:rgba(255,224,102,.8);border-left:2px dashed rgba(58,43,92,.25);border-right:2px dashed rgba(58,43,92,.25);z-index:2}
+
+/* ---------- Kunci ---------- */
+.titik-kode{display:flex;gap:14px;justify-content:center}
+.titik-kode i{width:18px;height:18px;border:var(--garis);border-radius:50%;background:#fff;transition:background .15s}
+.titik-kode i.isi-titik{background:var(--stroberi)}
+.papan{display:grid;grid-template-columns:repeat(3,72px);gap:12px;justify-content:center}
+.papan button{height:62px;border:var(--garis);border-radius:20px;background:#fff;font-weight:800;font-size:1.5rem;box-shadow:0 4px 0 var(--tinta)}
+.papan button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+.goyang{animation:goyang .45s}
+@keyframes goyang{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+
+/* ---------- Kado pembuka ---------- */
+.kado{width:min(250px,64vw);background:none;border:0;padding:0;animation:goyangKado 2.6s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes goyangKado{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-6deg)}82%{transform:rotate(5deg)}89%{transform:rotate(-3deg)}94%{transform:rotate(2deg)}}
+.kado svg{width:100%;height:auto;overflow:visible}
+.kado .tutup-kado{transform-box:fill-box;transform-origin:50% 100%;transition:transform .7s cubic-bezier(.3,1.5,.5,1),opacity .6s .25s}
+.kado.terbuka{animation:none}
+.kado.terbuka .tutup-kado{transform:translateY(-140px) rotate(-28deg);opacity:0}
+.kado.terbuka .badan-kado{animation:penyet .5s}
+@keyframes penyet{30%{transform:scale(1.1,.88)}60%{transform:scale(.95,1.06)}}
+.badan-kado{transform-box:fill-box;transform-origin:50% 100%}
+.kado .mata{transform-box:fill-box;transform-origin:center;animation:kedipMata 4s infinite}
+@keyframes kedipMata{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.petunjuk{display:inline-flex;align-items:center;gap:8px;font-weight:800;background:#fff;border:var(--garis);border-radius:999px;padding:.4em 1em;box-shadow:0 4px 0 var(--tinta)}
+.petunjuk .jari{display:inline-block;animation:tunjuk 1s ease-in-out infinite}
+@keyframes tunjuk{50%{transform:translateY(-6px)}}
+
+/* ---------- Sambutan & balon ---------- */
+.judul-sambutan{font-size:clamp(2.7rem,13vw,5rem);color:var(--lemon)}
+.balon-bungkus{width:min(260px,66vw);animation:goyangKado 3.2s ease-in-out infinite;transform-origin:50% 92%;margin-top:4px}
+.balon-bungkus svg{width:100%;height:auto;overflow:visible}
+.balon{cursor:pointer;transform-box:fill-box;transform-origin:center;transition:transform .22s cubic-bezier(.3,1.6,.5,1),opacity .22s ease-out .04s}
+.balon.pecah{transform:scale(1.35) rotate(6deg);opacity:0;pointer-events:none}
+.balon .mata{transform-box:fill-box;transform-origin:center;animation:kedipMata 4.5s infinite}
+.balon:focus-visible{outline:none}
+.balon:focus-visible ellipse:first-child{filter:drop-shadow(0 0 5px var(--stroberi))}
+
+/* ---------- Menu ---------- */
+.judul-menu{font-size:clamp(2.1rem,9.5vw,3.6rem);color:#fff}
+.kisi-menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;width:100%}
+.kartu-menu{
+  position:relative;border:var(--garis);border-radius:26px;padding:18px 10px 16px;box-shadow:var(--bayang);
+  display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform .15s,box-shadow .15s;
+}
+.kartu-menu:nth-child(1){background:var(--mint);transform:rotate(-2deg)}
+.kartu-menu:nth-child(2){background:var(--lemon);transform:rotate(1.5deg)}
+.kartu-menu:nth-child(3){background:var(--lavender);transform:rotate(1deg)}
+.kartu-menu:nth-child(4){background:var(--stroberi);transform:rotate(-1.5deg)}
+.kartu-menu:hover{transform:rotate(0) translateY(-3px);box-shadow:0 9px 0 var(--tinta)}
+.kartu-menu:active{transform:translateY(4px);box-shadow:0 2px 0 var(--tinta)}
+.ikon-bulat{width:74px;height:74px;border-radius:50%;background:#fff;border:var(--garis);display:grid;place-items:center;font-size:2.3rem;line-height:1}
+.kartu-menu b{font-size:1.12rem}
+.kartu-menu small{font-family:var(--tulisan);font-size:1.1rem;font-weight:700;line-height:1}
+.cap{position:absolute;top:-12px;right:-8px;background:#fff;border:var(--garis);border-radius:999px;padding:2px 9px;font-weight:800;font-size:.85rem;transform:rotate(10deg);display:none}
+.kartu-menu.dibuka .cap{display:block;animation:muncul .4s both}
+.progres{font-family:var(--tulisan);font-size:1.3rem;font-weight:700;margin:0}
+.muncul{animation:muncul .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes muncul{from{transform:scale(.4);opacity:0}}
+[hidden]{display:none!important}
+
+/* ---------- Galeri (4 foto + hiasan) ---------- */
+.spread{position:relative;width:100%;padding:8px 4px 30px}
+.spread-grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:38px 22px}
+.spread-grid .polaroid{width:100%;cursor:pointer;transition:transform .2s}
+.spread-grid .polaroid:hover{transform:rotate(0) scale(1.03);z-index:3}
+.spread-grid .polaroid:nth-child(1){transform:rotate(-5deg) translateY(8px)}
+.spread-grid .polaroid:nth-child(2){transform:rotate(4deg)}
+.spread-grid .polaroid:nth-child(3){transform:rotate(3deg)}
+.spread-grid .polaroid:nth-child(4){transform:rotate(-4deg) translateY(6px)}
+.spread-grid .polaroid:nth-child(1) .selotip{background:rgba(255,122,168,.75)}
+.spread-grid .polaroid:nth-child(2) .selotip{background:rgba(125,219,184,.75)}
+.spread-grid .polaroid:nth-child(3) .selotip{background:rgba(195,177,255,.75)}
+.spread-grid .polaroid:nth-child(4) .selotip{background:rgba(255,224,102,.75)}
+.hiasan{position:absolute;z-index:0;pointer-events:none;line-height:1}
+.hiasan.h1{top:-8px;left:44%;font-size:24px;transform:rotate(-10deg)}
+.hiasan.h2{top:34%;left:-6px;font-size:27px;transform:rotate(12deg)}
+.hiasan.h3{top:28%;right:-8px;font-size:23px;transform:rotate(-12deg)}
+.hiasan.h4{bottom:12%;left:42%;font-size:27px;transform:rotate(8deg)}
+.hiasan.h5{bottom:-8px;right:16%;font-size:24px;transform:rotate(-8deg)}
+
+.kotak-lampu{position:fixed;inset:0;z-index:20;background:rgba(58,43,92,.72);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.kotak-lampu.buka{opacity:1;visibility:visible;transition:opacity .3s}
+.kotak-lampu .polaroid{width:min(420px,86vw);padding:10px 10px 0;transform:rotate(-1.5deg)}
+.kotak-lampu .polaroid .foto{aspect-ratio:auto;max-height:64vh}
+.kotak-lampu .polaroid .foto:not(.kosong){background:#fff}
+.kotak-lampu .polaroid .foto img{height:auto;max-height:64vh;object-fit:contain;margin:auto}
+.kotak-lampu .polaroid .foto.kosong{aspect-ratio:1/1}
+.kotak-lampu figcaption{font-size:1.4rem}
+.panah{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;border:var(--garis);border-radius:50%;background:#fff;font-weight:800;font-size:1.5rem;box-shadow:0 4px 0 var(--tinta);z-index:2}
+.panah.kiri{left:10px}.panah.kanan{right:10px}
+.tutup-lampu{position:absolute;top:max(16px,env(safe-area-inset-top));right:16px;width:46px;height:46px;border:var(--garis);border-radius:50%;background:var(--stroberi);font-weight:800;font-size:1.3rem;box-shadow:0 4px 0 var(--tinta)}
+
+/* ---------- Surat ---------- */
+.amplop{width:min(330px,82vw);background:none;border:0;padding:0;animation:goyangKado 3s ease-in-out infinite;transform-origin:50% 90%}
+.amplop svg{width:100%;height:auto;overflow:visible}
+.amplop .lipatan{transform-box:fill-box;transform-origin:50% 0;transition:transform .6s ease-in}
+.amplop.terbuka{animation:none}
+.amplop.terbuka .lipatan{transform:scaleY(-1)}
+.kertas{
+  width:100%;text-align:left;position:relative;border:var(--garis);border-radius:18px;box-shadow:var(--bayang);
+  background:#fff repeating-linear-gradient(180deg,transparent 0 33px,#D6E9FF 33px 35px);
+  background-position:0 58px;padding:24px 22px 26px 46px;
+}
+.kertas::before{content:"";position:absolute;top:0;bottom:0;left:30px;width:2px;background:#FFB3CB}
+.kertas .polaroid{float:right;width:clamp(96px,30vw,150px);margin:-4px -6px 10px 14px;transform:rotate(5deg);padding:5px 5px 12px}
+.teks-surat{font-family:var(--tulisan);font-size:1.4rem;line-height:35px;white-space:pre-line;margin:0;min-height:6em}
+.sapaan{font-family:var(--tulisan);font-weight:700;font-size:1.65rem;line-height:35px;margin:0 0 0}
+.ttd{font-family:var(--tulisan);font-size:1.4rem;line-height:35px;margin:8px 0 0;text-align:right;opacity:0;transition:opacity .6s}
+.ttd b{font-size:1.8rem;display:block;color:#E94C86}
+.ttd.tampil{opacity:1}
+.kursor{display:inline-block;width:2px;height:1.1em;background:var(--tinta);vertical-align:-3px;animation:kedip 0.8s steps(1) infinite}
+.hitung-hari{font-weight:800;background:var(--lemon);border:var(--garis);border-radius:999px;padding:.45em 1.1em;box-shadow:0 4px 0 var(--tinta);transform:rotate(-2deg)}
+.lewati{font-family:var(--tulisan);font-size:1.1rem;background:none;border:0;text-decoration:underline;opacity:.8}
+
+/* ---------- Playlist ---------- */
+.tv{width:100%;max-width:520px;position:relative;margin-top:40px;background:var(--persik);border:var(--garis);border-radius:30px;padding:16px 16px 14px;box-shadow:var(--bayang)}
+.antena{position:absolute;bottom:100%;width:4px;height:48px;background:var(--tinta);border-radius:4px;transform-origin:bottom center}
+.antena::after{content:"";position:absolute;top:-9px;left:50%;width:14px;height:14px;border-radius:50%;background:var(--stroberi);border:3px solid var(--tinta);transform:translateX(-50%)}
+.antena.a1{left:40%;transform:rotate(-28deg);animation:antena 2.4s ease-in-out infinite}
+.antena.a2{left:58%;transform:rotate(26deg);animation:antena 2.4s ease-in-out infinite reverse}
+@keyframes antena{50%{rotate:6deg}}
+.layar{aspect-ratio:16/9;border:var(--garis);border-radius:18px;background:#4B3A78;overflow:hidden;position:relative}
+.layar iframe{width:100%;height:100%;border:0;display:block}
+.wajah-tv{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#fff;padding:12px}
+.wajah-tv .muka{display:flex;gap:44px}
+.wajah-tv .muka i{width:14px;height:20px;background:#fff;border-radius:50%;animation:kedipMata 3.5s infinite}
+.wajah-tv .mulut{width:26px;height:12px;border:4px solid #fff;border-top:0;border-radius:0 0 20px 20px;margin-top:-4px}
+.wajah-tv p{margin:0;font-family:var(--tulisan);font-size:1.25rem;font-weight:700;line-height:1.2;max-width:30ch}
+.panel-tv{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:0 6px}
+.speaker{display:grid;grid-template-columns:repeat(6,8px);gap:5px}
+.speaker i{width:8px;height:8px;border-radius:50%;background:var(--tinta);opacity:.7}
+.kenop{display:flex;gap:10px}
+.kenop i{width:26px;height:26px;border-radius:50%;background:var(--lemon);border:3px solid var(--tinta);position:relative}
+.kenop i::after{content:"";position:absolute;top:2px;left:50%;width:3px;height:9px;background:var(--tinta);transform:translateX(-50%)}
+.daftar-lagu{list-style:none;margin:8px 0 0;padding:0;width:100%;max-width:520px;display:flex;flex-direction:column;gap:12px}
+.lagu{width:100%;display:flex;align-items:center;gap:14px;text-align:left;background:#fff;border:var(--garis);border-radius:20px;padding:10px 14px;box-shadow:0 4px 0 var(--tinta)}
+.lagu:active{transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+.lagu .no{flex:none;width:38px;height:38px;border-radius:50%;border:var(--garis);background:var(--lavender);display:grid;place-items:center;font-weight:800}
+.lagu .info{flex:1;min-width:0}
+.lagu .info b{display:block;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lagu .info small{font-family:var(--tulisan);font-size:1.1rem;font-weight:700}
+.lagu .eq{display:none;gap:3px;align-items:flex-end;height:22px}
+.lagu .eq i{width:5px;background:var(--stroberi);border-radius:3px;animation:eq .8s ease-in-out infinite alternate}
+.lagu .eq i:nth-child(2){animation-delay:.2s}.lagu .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{from{height:5px}to{height:22px}}
+.lagu.main{background:var(--lemon)}
+.buka-yt{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:.95rem;color:var(--tinta);background:#fff;border:var(--garis);border-radius:999px;padding:.4em 1em;box-shadow:0 3px 0 var(--tinta);text-decoration:none}
+.buka-yt:active{transform:translateY(2px);box-shadow:0 1px 0 var(--tinta)}
+.wajah-tv .buka-yt{margin-top:4px}
+.lagu.main .eq{display:flex}
+
+/* ---------- Kartu semangat ---------- */
+#hadiah .isi{max-width:660px}
+.kisi-kupon{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;width:100%;padding-top:6px}
+.bingkai-kupon{filter:drop-shadow(3px 0 0 var(--tinta)) drop-shadow(-3px 0 0 var(--tinta)) drop-shadow(0 3px 0 var(--tinta)) drop-shadow(0 -3px 0 var(--tinta)) drop-shadow(0 5px 0 var(--tinta))}
+.kupon{
+  position:relative;display:flex;align-items:stretch;min-height:108px;border-radius:16px;overflow:hidden;
+  -webkit-mask:radial-gradient(circle at 0 50%,transparent 13px,#000 14px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 13px,#000 14px) right/51% 100% no-repeat;
+          mask:radial-gradient(circle at 0 50%,transparent 13px,#000 14px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 13px,#000 14px) right/51% 100% no-repeat;
+}
+.bingkai-kupon:nth-child(4n+1) .kupon{background:var(--mint)}
+.bingkai-kupon:nth-child(4n+2) .kupon{background:var(--lemon)}
+.bingkai-kupon:nth-child(4n+3) .kupon{background:var(--lavender)}
+.bingkai-kupon:nth-child(4n) .kupon{background:var(--persik)}
+.kupon .ekor{flex:none;width:86px;display:grid;place-items:center;font-size:2.4rem;border-right:3px dashed var(--tinta)}
+.kupon .badan{flex:1;padding:14px 22px 14px 16px;text-align:left;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.kupon .badan b{font-size:1.15rem}
+.kupon .badan span{font-family:var(--tulisan);font-size:1.15rem;font-weight:700;line-height:1.1}
+.kupon canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;transition:opacity .5s}
+.kupon canvas.hilang{opacity:0;pointer-events:none}
+
+/* ---------- Akhir ---------- */
+.hati-foto{width:min(270px,70vw);aspect-ratio:1/1;position:relative;animation:detak 1.3s ease-in-out infinite}
+@keyframes detak{0%,100%{transform:scale(1)}15%{transform:scale(1.07)}30%{transform:scale(.98)}45%{transform:scale(1.05)}}
+.hati-foto .lapis{position:absolute;inset:0;-webkit-mask:var(--hati) center/contain no-repeat;mask:var(--hati) center/contain no-repeat}
+.hati-foto .lapis.luar{background:var(--tinta);transform:translateY(8px)}
+.hati-foto .lapis.tengah{background:var(--tinta)}
+.hati-foto .lapis.dalam{inset:9px}
+.hati-foto .lapis.dalam .foto{width:100%;height:100%}
+:root{--hati:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92'%3E%3Cpath d='M50 90C22 70 2 52 2 28 2 13 13 2 27 2c10 0 18 6 23 14C55 8 63 2 73 2c14 0 25 11 25 26 0 24-20 42-48 62z'/%3E%3C/svg%3E")}
+.judul-akhir{font-size:clamp(1.7rem,7.6vw,3rem);color:var(--stroberi)}
+.baris-tombol{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+/* ---------- Musik & efek ---------- */
+.tombol-musik{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:15;width:54px;height:54px;border-radius:50%;border:var(--garis);background:var(--lemon);box-shadow:0 4px 0 var(--tinta);font-size:1.4rem;font-weight:800;display:grid;place-items:center}
+.tombol-musik.putar span{animation:putar 3s linear infinite}
+.tombol-musik span{display:inline-block}
+.tombol-musik.diam::after{content:"";position:absolute;width:34px;height:3px;background:var(--tinta);transform:rotate(-45deg);border-radius:2px}
+@keyframes putar{to{transform:rotate(360deg)}}
+#konfeti{position:fixed;inset:0;z-index:30;pointer-events:none}
+.hati-kecil{position:fixed;z-index:31;pointer-events:none;font-size:22px;font-weight:800;animation:naik 1s ease-out forwards;
+  text-shadow:2px 0 var(--tinta),-2px 0 var(--tinta),0 2px var(--tinta),0 -2px var(--tinta)}
+@keyframes naik{from{transform:translate(-50%,-50%) scale(.4);opacity:1}to{transform:translate(-50%,-160%) scale(1.2) rotate(15deg);opacity:0}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+@media (min-width:700px){
+  .kisi-menu{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .isi.menu{max-width:880px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="langit" aria-hidden="true" id="langit"></div>
+
+<!-- 0. KUNCI -->
+<section class="adegan" id="kunci" aria-label="Masukkan kode">
+  <div class="isi">
+    <svg width="110" viewBox="0 0 120 130" aria-hidden="true">
+      <path d="M32 60V42a28 28 0 0 1 56 0v18" fill="none" stroke="#3A2B5C" stroke-width="12" stroke-linecap="round"/>
+      <path d="M32 60V42a28 28 0 0 1 56 0v18" fill="none" stroke="#C3B1FF" stroke-width="5" stroke-linecap="round"/>
+      <rect x="12" y="56" width="96" height="68" rx="20" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+      <ellipse class="mata" cx="45" cy="84" rx="5" ry="7" fill="#3A2B5C"/><ellipse class="mata" cx="75" cy="84" rx="5" ry="7" fill="#3A2B5C"/>
+      <ellipse cx="34" cy="99" rx="8" ry="5" fill="#FF7AA8" opacity=".6"/><ellipse cx="86" cy="99" rx="8" ry="5" fill="#FF7AA8" opacity=".6"/>
+      <path d="M52 100q8 8 16 0" fill="none" stroke="#3A2B5C" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <h1 class="judul-kecil">Halaman ini dikunci</h1>
+    <p class="tangan" id="petunjukKode"></p>
+    <div class="titik-kode" id="titikKode" aria-live="polite"></div>
+    <div class="papan" id="papan"></div>
+    <p class="tangan" id="pesanKode" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- 1. KADO PEMBUKA -->
+<section class="adegan" id="buka" aria-label="Pembuka">
+  <div class="isi">
+    <h1 class="judul-kecil" id="teksPembuka">Psst… ada kiriman buat kamu</h1>
+    <button class="kado" id="kado" aria-label="Buka kado">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <ellipse cx="100" cy="190" rx="72" ry="8" fill="#3A2B5C" opacity=".15"/>
+        <g class="badan-kado">
+          <rect x="30" y="86" width="140" height="98" rx="14" fill="#FF7AA8" stroke="#3A2B5C" stroke-width="4"/>
+          <rect x="88" y="86" width="24" height="98" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+          <ellipse class="mata" cx="60" cy="128" rx="5.5" ry="8" fill="#3A2B5C"/>
+          <ellipse class="mata" cx="140" cy="128" rx="5.5" ry="8" fill="#3A2B5C"/>
+          <circle cx="62" cy="125" r="2" fill="#fff"/><circle cx="142" cy="125" r="2" fill="#fff"/>
+          <ellipse cx="48" cy="146" rx="9" ry="5" fill="#E9407A" opacity=".45"/>
+          <ellipse cx="152" cy="146" rx="9" ry="5" fill="#E9407A" opacity=".45"/>
+          <path d="M90 142q10 11 20 0" fill="none" stroke="#3A2B5C" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <g class="tutup-kado">
+          <ellipse cx="78" cy="50" rx="24" ry="14" transform="rotate(-22 78 50)" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+          <ellipse cx="122" cy="50" rx="24" ry="14" transform="rotate(22 122 50)" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+          <rect x="20" y="62" width="160" height="30" rx="10" fill="#FF7AA8" stroke="#3A2B5C" stroke-width="4"/>
+          <rect x="86" y="62" width="28" height="30" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+          <circle cx="100" cy="58" r="10" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+        </g>
+      </svg>
+    </button>
+    <span class="petunjuk"><span class="jari" aria-hidden="true">👆</span> Ketuk kadonya</span>
+  </div>
+</section>
+
+<!-- 2. SAMBUTAN + BALON -->
+<section class="adegan" id="sambutan" aria-label="Sambutan">
+  <div class="isi">
+    <div>
+      <p class="judul-kecil">Untuk kamu,</p>
+      <h1 class="stiker judul-sambutan" id="judulSambutan"></h1>
+    </div>
+    <p class="tangan">Ada beberapa kejutan kecil nungguin kamu</p>
+    <div class="balon-bungkus">
+      <svg viewBox="0 0 240 230" aria-hidden="false" role="group" aria-label="Tiga balon">
+        <g stroke="#3A2B5C" stroke-width="3" fill="none" opacity=".8">
+          <path d="M72 128Q90 170 120 205"/>
+          <path d="M120 116Q120 160 120 205"/>
+          <path d="M168 128Q150 170 120 205"/>
+        </g>
+        <circle cx="120" cy="205" r="6" fill="#3A2B5C"/>
+
+        <g class="balon" data-balon="0" tabindex="0" role="button" aria-label="Pecahkan balon pertama">
+          <ellipse cx="72" cy="80" rx="32" ry="40" fill="#FF7AA8" stroke="#3A2B5C" stroke-width="4"/>
+          <path d="M72 118l-7 11h14z" fill="#FF7AA8" stroke="#3A2B5C" stroke-width="3" stroke-linejoin="round"/>
+          <ellipse class="mata" cx="61" cy="74" rx="4.5" ry="6.5" fill="#3A2B5C"/>
+          <ellipse class="mata" cx="83" cy="74" rx="4.5" ry="6.5" fill="#3A2B5C"/>
+          <circle cx="63" cy="65" r="4" fill="#fff" opacity=".65"/>
+          <ellipse cx="58" cy="88" rx="7" ry="4" fill="#E9407A" opacity=".45"/>
+          <ellipse cx="86" cy="88" rx="7" ry="4" fill="#E9407A" opacity=".45"/>
+          <path d="M65 93q7 6 14 0" fill="none" stroke="#3A2B5C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <g class="balon" data-balon="1" tabindex="0" role="button" aria-label="Pecahkan balon kedua">
+          <ellipse cx="120" cy="60" rx="36" ry="46" fill="#FFE066" stroke="#3A2B5C" stroke-width="4"/>
+          <path d="M120 106l-8 12h16z" fill="#FFE066" stroke="#3A2B5C" stroke-width="3" stroke-linejoin="round"/>
+          <ellipse class="mata" cx="107" cy="54" rx="5" ry="7" fill="#3A2B5C"/>
+          <ellipse class="mata" cx="133" cy="54" rx="5" ry="7" fill="#3A2B5C"/>
+          <circle cx="109" cy="44" r="4.5" fill="#fff" opacity=".65"/>
+          <ellipse cx="102" cy="70" rx="7.5" ry="4.5" fill="#E9407A" opacity=".4"/>
+          <ellipse cx="138" cy="70" rx="7.5" ry="4.5" fill="#E9407A" opacity=".4"/>
+          <path d="M111 75q9 7 18 0" fill="none" stroke="#3A2B5C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+
+        <g class="balon" data-balon="2" tabindex="0" role="button" aria-label="Pecahkan balon ketiga">
+          <ellipse cx="168" cy="80" rx="32" ry="40" fill="#7DDBB8" stroke="#3A2B5C" stroke-width="4"/>
+          <path d="M168 118l-7 11h14z" fill="#7DDBB8" stroke="#3A2B5C" stroke-width="3" stroke-linejoin="round"/>
+          <ellipse class="mata" cx="157" cy="74" rx="4.5" ry="6.5" fill="#3A2B5C"/>
+          <ellipse class="mata" cx="179" cy="74" rx="4.5" ry="6.5" fill="#3A2B5C"/>
+          <circle cx="159" cy="65" r="4" fill="#fff" opacity=".65"/>
+          <ellipse cx="154" cy="88" rx="7" ry="4" fill="#E9407A" opacity=".45"/>
+          <ellipse cx="182" cy="88" rx="7" ry="4" fill="#E9407A" opacity=".45"/>
+          <path d="M161 93q7 6 14 0" fill="none" stroke="#3A2B5C" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+    </div>
+    <p class="petunjuk" id="petunjukBalon"><span class="jari" aria-hidden="true">👆</span> Pecahkan balonnya, satu-satu</p>
+    <p class="tangan muncul" id="doaBalon" hidden>Semoga semua beban hari ini jadi lebih ringan ✨</p>
+    <button class="tombol pink muncul" id="keMenu" hidden>Buka kejutannya</button>
+  </div>
+</section>
+
+<!-- 3. MENU -->
+<section class="adegan" id="menu" aria-label="Pilih kejutan">
+  <div class="isi menu">
+    <h1 class="stiker judul-menu" id="judulMenu"></h1>
+    <p class="tangan">Ada 4 kado kecil. Buka semuanya, ya!</p>
+    <div class="kisi-menu">
+      <button class="kartu-menu" data-ke="galeri"><span class="cap">sudah ✓</span><span class="ikon-bulat" aria-hidden="true">📸</span><b>Galeri kenangan</b><small>foto-foto kita</small></button>
+      <button class="kartu-menu" data-ke="surat"><span class="cap">sudah ✓</span><span class="ikon-bulat" aria-hidden="true">💌</span><b>Surat kecil</b><small>baca pelan-pelan</small></button>
+      <button class="kartu-menu" data-ke="lagu"><span class="cap">sudah ✓</span><span class="ikon-bulat" aria-hidden="true">🎧</span><b>Lagu buat kamu</b><small>putar & dengarkan</small></button>
+      <button class="kartu-menu" data-ke="hadiah"><span class="cap">sudah ✓</span><span class="ikon-bulat" aria-hidden="true">🌟</span><b>Kartu semangat</b><small>gosok buat baca</small></button>
+    </div>
+    <p class="progres" id="progres">0 dari 4 sudah dibuka</p>
+    <button class="tombol pink muncul" id="keAkhir" hidden>Satu pesan terakhir 💖</button>
+  </div>
+</section>
+
+<!-- 4a. GALERI -->
+<section class="adegan" id="galeri" aria-label="Galeri kenangan">
+  <div class="isi lebar">
+    <div class="bilah"><button class="tombol-kembali" data-kembali>← Kembali</button><h2>Galeri kenangan</h2></div>
+    <p class="tangan" style="margin-bottom:-6px">Cuma 4, tapi semuanya berarti</p>
+    <p class="tangan" style="font-size:1rem;opacity:.75">Ketuk fotonya buat lihat lebih besar</p>
+    <div class="spread">
+      <span class="hiasan h1" aria-hidden="true">✨</span>
+      <span class="hiasan h2" aria-hidden="true">🤍</span>
+      <span class="hiasan h3" aria-hidden="true">⭐️</span>
+      <span class="hiasan h4" aria-hidden="true">🎀</span>
+      <span class="hiasan h5" aria-hidden="true">💫</span>
+      <div class="spread-grid" id="kisiGaleri"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4b. SURAT -->
+<section class="adegan" id="surat" aria-label="Surat">
+  <div class="isi">
+    <div class="bilah"><button class="tombol-kembali" data-kembali>← Kembali</button><h2>Surat kecil</h2></div>
+    <div id="panggungAmplop" style="display:flex;flex-direction:column;align-items:center;gap:18px">
+      <button class="amplop" id="amplop" aria-label="Buka surat">
+        <svg viewBox="0 0 300 210" aria-hidden="true">
+          <ellipse cx="150" cy="202" rx="120" ry="7" fill="#3A2B5C" opacity=".15"/>
+          <rect x="10" y="14" width="280" height="178" rx="16" fill="#C3B1FF" stroke="#3A2B5C" stroke-width="4"/>
+          <path d="M14 188L150 102 286 188" fill="none" stroke="#3A2B5C" stroke-width="4" stroke-linejoin="round"/>
+          <g class="lipatan">
+            <path d="M12 22Q12 14 22 14H278Q288 14 288 22L150 120Z" fill="#AE98FF" stroke="#3A2B5C" stroke-width="4" stroke-linejoin="round"/>
+          </g>
+          <path d="M150 136c-12-9-22-16-22-27 0-7 5-12 11-12 5 0 9 3 11 7 2-4 6-7 11-7 6 0 11 5 11 12 0 11-10 18-22 27z" fill="#FF7AA8" stroke="#3A2B5C" stroke-width="4" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <span class="petunjuk"><span class="jari" aria-hidden="true">👆</span> Ketuk amplopnya</span>
+    </div>
+    <div id="panggungSurat" hidden style="width:100%;display:flex;flex-direction:column;align-items:center;gap:18px">
+      <article class="kertas muncul" id="kertas">
+        <figure class="polaroid" id="fotoSurat" style="margin:0"></figure>
+        <p class="sapaan" id="sapaan"></p>
+        <p class="teks-surat" id="teksSurat"></p>
+        <p class="ttd" id="ttd"></p>
+      </article>
+      <button class="lewati" id="lewati">Tampilkan semua tulisan</button>
+      <p class="hitung-hari" id="hitungHari" hidden></p>
+    </div>
+  </div>
+</section>
+
+<!-- 4c. LAGU -->
+<section class="adegan" id="lagu" aria-label="Playlist">
+  <div class="isi">
+    <div class="bilah"><button class="tombol-kembali" data-kembali>← Kembali</button><h2>Lagu buat kamu</h2></div>
+    <div class="tv">
+      <span class="antena a1"></span><span class="antena a2"></span>
+      <div class="layar" id="layar"></div>
+      <div class="panel-tv" aria-hidden="true">
+        <div class="speaker"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="kenop"><i></i><i style="transform:rotate(70deg)"></i></div>
+      </div>
+    </div>
+    <a class="buka-yt" id="bukaYt" href="#" target="_blank" rel="noopener" hidden>Lagunya nggak mau jalan? Buka di YouTube ↗</a>
+    <ol class="daftar-lagu" id="daftarLagu"></ol>
+  </div>
+</section>
+
+<!-- 4d. KARTU SEMANGAT -->
+<section class="adegan" id="hadiah" aria-label="Kartu semangat">
+  <div class="isi lebar">
+    <div class="bilah"><button class="tombol-kembali" data-kembali>← Kembali</button><h2>Kartu semangat</h2></div>
+    <p class="tangan" id="teksKupon">Gosok tiap kartu pakai jari sampai kata-katanya kelihatan ✨</p>
+    <div class="kisi-kupon" id="kisiKupon"></div>
+  </div>
+</section>
+
+<!-- 5. AKHIR -->
+<section class="adegan" id="akhir" aria-label="Penutup">
+  <div class="isi">
+    <div class="hati-foto">
+      <div class="lapis luar"></div>
+      <div class="lapis tengah"></div>
+      <div class="lapis dalam" id="fotoAkhir"></div>
+    </div>
+    <h1 class="stiker judul-akhir" id="judulAkhir"></h1>
+    <p class="tangan" id="pesanAkhir" style="max-width:34ch"></p>
+    <div class="baris-tombol">
+      <button class="tombol putih" id="balikMenu">Kembali ke menu</button>
+      <button class="tombol" id="ulang">Putar dari awal</button>
+    </div>
+  </div>
+</section>
+
+<!-- Kotak lihat foto besar -->
+<div class="kotak-lampu" id="kotakLampu" role="dialog" aria-modal="true" aria-label="Foto">
+  <button class="tutup-lampu" id="tutupLampu" aria-label="Tutup">✕</button>
+  <button class="panah kiri" id="panahKiri" aria-label="Foto sebelumnya">‹</button>
+  <figure class="polaroid" id="fotoBesar" style="margin:0"></figure>
+  <button class="panah kanan" id="panahKanan" aria-label="Foto berikutnya">›</button>
+</div>
+
+<button class="tombol-musik" id="tombolMusik" aria-label="Musik" hidden><span>♫</span></button>
+<audio id="musik" loop preload="auto"></audio>
+<canvas id="konfeti" aria-hidden="true"></canvas>
+
+<script>
+(function(){
+const C = CONFIG;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const WARNA = ['#FF7AA8','#FFE066','#7DDBB8','#C3B1FF','#FFB38A','#9FD6FF'];
+const HEMAT = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Langit ---------- */
+(function buatLangit(){
+  const l = $('#langit');
+  const awan = [[8,150,85,0],[22,100,110,-40],[58,180,95,-20],[74,120,120,-70],[88,90,80,-10]];
+  awan.forEach(([top,w,t,d])=>{
+    const a=document.createElement('div');a.className='awan';
+    a.style.cssText=`top:${top}%;--w:${w}px;--t:${t}s;--d:${d}s`;l.appendChild(a);
+  });
+  for(let i=0;i<14;i++){
+    const k=document.createElement('span');k.className='kilau';k.textContent='✦';
+    k.style.cssText=`top:${Math.random()*100}%;left:${Math.random()*100}%;--s:${10+Math.random()*12}px;--d:${-Math.random()*3}s`;
+    l.appendChild(k);
+  }
+})();
+
+/* ---------- Pembantu ---------- */
+function stikerHuruf(el, teks, warna){
+  el.innerHTML='';el.setAttribute('aria-label',teks);let n=0;
+  teks.split(' ').forEach((kata)=>{
+    const k=document.createElement('span');k.className='kata';k.setAttribute('aria-hidden','true');
+    [...kata].forEach(h=>{
+      const s=document.createElement('span');s.textContent=h;
+      s.style.color = warna || WARNA[n % 5];
+      s.style.setProperty('--r',(Math.random()*10-5).toFixed(1)+'deg');
+      s.style.setProperty('--dl',(n*0.05)+'s');n++;
+      k.appendChild(s);
+    });
+    el.appendChild(k);
+  });
+}
+function elFoto(src){
+  const d=document.createElement('div');d.className='foto';
+  const nama=(src||'').split('/').pop()||'foto';
+  d.dataset.nama=nama;
+  if(!src){d.classList.add('kosong');return d;}
+  const img=new Image();img.alt='';img.loading='lazy';img.decoding='async';
+  img.onerror=()=>d.classList.add('kosong');
+  img.src=src;d.appendChild(img);return d;
+}
+function polaroid(src,tulisan,selotip){
+  const f=document.createElement('figure');f.className='polaroid';f.style.margin='0';
+  if(selotip){const t=document.createElement('span');t.className='selotip';f.appendChild(t);}
+  f.appendChild(elFoto(src));
+  if(tulisan!=null){const c=document.createElement('figcaption');c.textContent=tulisan;f.appendChild(c);}
+  return f;
+}
+
+/* ---------- Konfeti ---------- */
+const kv=$('#konfeti'),kx=kv.getContext('2d');let partikel=[],jalan=false;
+function ukurKanvas(){const r=devicePixelRatio||1;kv.width=innerWidth*r;kv.height=innerHeight*r;kx.setTransform(r,0,0,r,0,0);}
+ukurKanvas();addEventListener('resize',ukurKanvas);
+function konfeti(x,y,jumlah=80,sebar=1){
+  jumlah=HEMAT?Math.min(15,jumlah):jumlah;
+  for(let i=0;i<jumlah;i++){
+    const sudut=Math.random()*Math.PI*2,kec=(3+Math.random()*7)*sebar;
+    partikel.push({x,y,vx:Math.cos(sudut)*kec,vy:Math.sin(sudut)*kec-5,r:Math.random()*6.28,vr:(Math.random()-.5)*.3,
+      w:6+Math.random()*7,h:4+Math.random()*5,warna:WARNA[i%WARNA.length],bentuk:Math.random()<.25?'hati':(Math.random()<.5?'bulat':'kotak'),umur:0});
+  }
+  if(!jalan){jalan=true;requestAnimationFrame(gambar);}
+}
+function hujanKonfeti(){for(let i=0;i<6;i++)setTimeout(()=>konfeti(Math.random()*innerWidth,-10,30,.6),i*180);}
+function gambar(){
+  kx.clearRect(0,0,innerWidth,innerHeight);
+  partikel=partikel.filter(p=>p.y<innerHeight+40&&p.umur<400);
+  partikel.forEach(p=>{
+    p.umur++;p.vy+=.18;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;
+    kx.save();kx.translate(p.x,p.y);kx.rotate(p.r);kx.fillStyle=p.warna;kx.strokeStyle='#3A2B5C';kx.lineWidth=1.5;
+    kx.beginPath();
+    if(p.bentuk==='bulat')kx.arc(0,0,p.w/2,0,6.28);
+    else if(p.bentuk==='hati'){const s=p.w/10;kx.moveTo(0,3*s);kx.bezierCurveTo(-7*s,-2*s,-3*s,-7*s,0,-3*s);kx.bezierCurveTo(3*s,-7*s,7*s,-2*s,0,3*s);}
+    else kx.rect(-p.w/2,-p.h/2,p.w,p.h);
+    kx.fill();kx.stroke();kx.restore();
+  });
+  if(partikel.length)requestAnimationFrame(gambar);else{jalan=false;kx.clearRect(0,0,innerWidth,innerHeight);}
+}
+function tengahEl(el){const r=el.getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2];}
+
+/* ---------- Hati kecil tiap ketukan ---------- */
+document.addEventListener('pointerdown',e=>{
+  if(e.target.closest('canvas,.papan,iframe'))return;
+  const h=document.createElement('span');h.className='hati-kecil';h.textContent='♥';
+  h.style.left=e.clientX+'px';h.style.top=e.clientY+'px';h.style.color=WARNA[Math.floor(Math.random()*5)];
+  document.body.appendChild(h);setTimeout(()=>h.remove(),1000);
+});
+
+/* ---------- Pindah adegan ---------- */
+let adeganAktif=null,pakaiKeyboard=false;
+addEventListener('keydown',e=>{if(e.key==='Tab')pakaiKeyboard=true;});
+addEventListener('pointerdown',()=>{pakaiKeyboard=false;});
+function ke(id,simpanRiwayat){
+  const baru=document.getElementById(id);if(!baru||baru===adeganAktif)return;
+  if(adeganAktif){adeganAktif.classList.remove('aktif');keluarDari(adeganAktif.id);}
+  baru.classList.add('aktif');baru.scrollTop=0;adeganAktif=baru;
+  if(simpanRiwayat)history.pushState({adegan:id},'');
+  masukKe(id);
+  if(pakaiKeyboard)setTimeout(()=>{const f=baru.querySelector('button:not([hidden]),[tabindex="0"]');f&&f.focus({preventScroll:true});},460);
+}
+addEventListener('popstate',()=>{
+  if(adeganAktif&&['galeri','surat','lagu','hadiah','akhir'].includes(adeganAktif.id)){
+    if($('#kotakLampu').classList.contains('buka')){tutupLampu();history.pushState({adegan:adeganAktif.id},'');return;}
+    ke('menu');
+  }
+});
+$$('[data-kembali]').forEach(b=>b.addEventListener('click',()=>history.back()));
+
+/* ---------- Musik latar ---------- */
+const musik=$('#musik'),tMusik=$('#tombolMusik');let musikAda=!!C.musikLatar,musikNyala=false;
+if(musikAda){musik.src=C.musikLatar;musik.addEventListener('error',()=>{musikAda=false;tMusik.hidden=true;});}
+function mulaiMusik(){if(!musikAda)return;musik.play().then(()=>{musikNyala=true;tMusik.hidden=false;perbaruiTombolMusik();}).catch(()=>{tMusik.hidden=!musikAda;perbaruiTombolMusik();});}
+function perbaruiTombolMusik(){tMusik.classList.toggle('putar',!musik.paused);tMusik.classList.toggle('diam',musik.paused);tMusik.setAttribute('aria-label',musik.paused?'Nyalakan musik':'Matikan musik');}
+tMusik.addEventListener('click',()=>{if(musik.paused){musik.play();musikNyala=true;}else{musik.pause();musikNyala=false;}setTimeout(perbaruiTombolMusik,50);});
+musik.addEventListener('play',perbaruiTombolMusik);musik.addEventListener('pause',perbaruiTombolMusik);
+
+/* ---------- 0. Kunci ---------- */
+let kode='';
+function siapkanKunci(){
+  $('#petunjukKode').textContent=C.petunjukKode||'';
+  const t=$('#titikKode');t.innerHTML='';for(let i=0;i<C.kodeRahasia.length;i++)t.appendChild(document.createElement('i'));
+  const p=$('#papan');['1','2','3','4','5','6','7','8','9','⌫','0','✓'].forEach(k=>{
+    const b=document.createElement('button');b.textContent=k;b.setAttribute('aria-label',k==='⌫'?'Hapus':k==='✓'?'Masuk':k);
+    b.addEventListener('click',()=>tekan(k));p.appendChild(b);
+  });
+}
+function tekan(k){
+  const n=C.kodeRahasia.length;
+  if(k==='⌫')kode=kode.slice(0,-1);
+  else if(k==='✓'){cekKode();return;}
+  else if(kode.length<n)kode+=k;
+  $$('#titikKode i').forEach((d,i)=>d.classList.toggle('isi-titik',i<kode.length));
+  if(kode.length===n)setTimeout(cekKode,200);
+}
+function cekKode(){
+  if(kode===C.kodeRahasia){$('#pesanKode').textContent='Terbuka! 🎉';konfeti(innerWidth/2,innerHeight/2,50);setTimeout(()=>ke('buka'),600);}
+  else{$('#pesanKode').textContent='Hehe, belum tepat. Coba lagi~';const t=$('#titikKode');t.classList.remove('goyang');void t.offsetWidth;t.classList.add('goyang');kode='';$$('#titikKode i').forEach(d=>d.classList.remove('isi-titik'));}
+}
+
+/* ---------- 1. Kado ---------- */
+$('#teksPembuka').textContent=`Psst… ada kiriman buat ${C.namaPenerima}`;
+$('#kado').addEventListener('click',function(){
+  if(this.classList.contains('terbuka'))return;
+  this.classList.add('terbuka');mulaiMusik();
+  const [x,y]=tengahEl(this);konfeti(x,y-40,110,1.1);
+  setTimeout(()=>ke('sambutan'),1100);
+});
+
+/* ---------- 2. Sambutan & balon ---------- */
+stikerHuruf($('#judulSambutan'),C.namaPenerima+'!');
+let poppedBalon=0;
+$$('.balon').forEach(b=>{
+  const pop=()=>{
+    if(b.classList.contains('pecah'))return;
+    b.classList.add('pecah');b.setAttribute('aria-label','Balon sudah pecah');poppedBalon++;
+    const [x,y]=tengahEl(b);konfeti(x,y,55,.85);
+    if(poppedBalon===3){
+      setTimeout(()=>{
+        $('#petunjukBalon').hidden=true;$('#doaBalon').hidden=false;$('#keMenu').hidden=false;
+        hujanKonfeti();if(pakaiKeyboard)$('#keMenu').focus({preventScroll:true});
+      },400);
+    }
+  };
+  b.addEventListener('click',pop);
+  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pop();}});
+});
+$('#keMenu').addEventListener('click',()=>ke('menu'));
+
+/* ---------- 3. Menu ---------- */
+stikerHuruf($('#judulMenu'),'Pilih kejutanmu','#fff');
+const sudah=new Set();
+$$('.kartu-menu').forEach(k=>k.addEventListener('click',()=>{
+  const tujuan=k.dataset.ke;sudah.add(tujuan);k.classList.add('dibuka');ke(tujuan,true);
+}));
+function perbaruiProgres(){
+  $('#progres').textContent=sudah.size<4?`${sudah.size} dari 4 sudah dibuka`:'Semua kado sudah dibuka 🎉';
+  if(sudah.size===4&&$('#keAkhir').hidden){$('#keAkhir').hidden=false;}
+}
+$('#keAkhir').addEventListener('click',()=>ke('akhir',true));
+
+/* ---------- 4a. Galeri ---------- */
+const kisiG=$('#kisiGaleri');
+C.galeri.forEach((g,i)=>{
+  const p=polaroid(g.foto,g.tulisan,true);p.tabIndex=0;p.setAttribute('role','button');p.setAttribute('aria-label','Lihat foto: '+g.tulisan);
+  p.addEventListener('click',()=>bukaLampu(i));
+  p.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bukaLampu(i);}});
+  kisiG.appendChild(p);
+});
+let idxLampu=0;
+function tampilLampu(){
+  const g=C.galeri[idxLampu],box=$('#fotoBesar');box.innerHTML='';
+  box.appendChild(elFoto(g.foto));const c=document.createElement('figcaption');c.textContent=g.tulisan;box.appendChild(c);
+}
+function bukaLampu(i){idxLampu=i;tampilLampu();$('#kotakLampu').classList.add('buka');if(pakaiKeyboard)$('#tutupLampu').focus();}
+function tutupLampu(){$('#kotakLampu').classList.remove('buka');}
+function geser(d){idxLampu=(idxLampu+d+C.galeri.length)%C.galeri.length;tampilLampu();}
+$('#tutupLampu').addEventListener('click',tutupLampu);
+$('#panahKiri').addEventListener('click',()=>geser(-1));
+$('#panahKanan').addEventListener('click',()=>geser(1));
+$('#kotakLampu').addEventListener('click',e=>{if(e.target.id==='kotakLampu')tutupLampu();});
+addEventListener('keydown',e=>{if(!$('#kotakLampu').classList.contains('buka'))return;
+  if(e.key==='Escape')tutupLampu();if(e.key==='ArrowLeft')geser(-1);if(e.key==='ArrowRight')geser(1);});
+let sentuhX=null;
+$('#kotakLampu').addEventListener('touchstart',e=>{sentuhX=e.touches[0].clientX},{passive:true});
+$('#kotakLampu').addEventListener('touchend',e=>{if(sentuhX==null)return;const dx=e.changedTouches[0].clientX-sentuhX;if(Math.abs(dx)>50)geser(dx<0?1:-1);sentuhX=null;});
+
+/* ---------- 4b. Surat ---------- */
+let ketik=null,suratSelesai=false;
+$('#fotoSurat').appendChild(elFoto(C.surat.foto));
+$('#fotoSurat').insertAdjacentHTML('afterbegin','<span class="selotip"></span>');
+$('#sapaan').textContent=C.surat.sapaan;
+$('#ttd').innerHTML='';$('#ttd').append(C.surat.penutup);
+const bTtd=document.createElement('b');bTtd.textContent=C.surat.tandaTangan;$('#ttd').appendChild(bTtd);
+if(C.tanggalJadian){
+  const mulai=new Date(C.tanggalJadian+'T00:00:00'),hari=Math.floor((Date.now()-mulai)/864e5);
+  if(!isNaN(hari)&&hari>=0){$('#hitungHari').textContent=`Sudah ${hari.toLocaleString('id-ID')} hari kita bareng 🌷`;}
+}
+$('#amplop').addEventListener('click',function(){
+  if(this.classList.contains('terbuka'))return;this.classList.add('terbuka');
+  const [x,y]=tengahEl(this);setTimeout(()=>konfeti(x,y,40,.7),350);
+  setTimeout(()=>{$('#panggungAmplop').hidden=true;$('#panggungSurat').hidden=false;mulaiKetik();},800);
+});
+function mulaiKetik(){
+  const teks=C.surat.isi,el=$('#teksSurat');let i=0;
+  const kursor='<span class="kursor"></span>';
+  if(HEMAT){selesaiKetik();return;}
+  clearInterval(ketik);
+  ketik=setInterval(()=>{
+    i+=2;el.textContent=teks.slice(0,i);el.insertAdjacentHTML('beforeend',kursor);
+    if(i>=teks.length)selesaiKetik();
+  },28);
+}
+function selesaiKetik(){
+  clearInterval(ketik);$('#teksSurat').textContent=C.surat.isi;$('#ttd').classList.add('tampil');$('#lewati').hidden=true;
+  if($('#hitungHari').textContent)$('#hitungHari').hidden=false;
+  if(!suratSelesai){suratSelesai=true;const [x,y]=tengahEl($('#ttd'));konfeti(x,y,40,.6);}
+}
+$('#lewati').addEventListener('click',selesaiKetik);
+$('#kertas').addEventListener('click',()=>{if(ketik&&!suratSelesai)selesaiKetik();});
+
+/* ---------- 4c. Lagu ---------- */
+function idYoutube(s){if(!s)return'';const m=String(s).match(/(?:youtu\.be\/|v=|embed\/|shorts\/|live\/)([\w-]{11})/);if(m)return m[1];return /^[\w-]{11}$/.test(s)?s:'';}
+function layarDiam(pesan,linkYt){
+  $('#layar').innerHTML=`<div class="wajah-tv"><div class="muka"><i></i><i></i></div><div class="mulut"></div><p></p></div>`;
+  $('#layar p').textContent=pesan;
+  if(linkYt){$('#layar .muka').remove();$('#layar .mulut').remove();const a=document.createElement('a');a.className='buka-yt';a.href=linkYt;a.target='_blank';a.rel='noopener';a.textContent='Putar di YouTube ↗';$('#layar .wajah-tv').appendChild(a);}
+}
+layarDiam('Pilih lagu di bawah, ya~');
+const DARI_FILE = location.protocol==='file:';
+let musikSebelumLagu=false;
+C.playlist.forEach((l,i)=>{
+  const li=document.createElement('li');
+  li.innerHTML=`<button class="lagu"><span class="no">${i+1}</span><span class="info"><b></b><small></small></span><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span></button>`;
+  li.querySelector('b').textContent=l.judul;li.querySelector('small').textContent=l.penyanyi;
+  li.querySelector('button').addEventListener('click',function(){
+    $$('.lagu').forEach(b=>b.classList.remove('main'));
+    const id=idYoutube(l.youtube);
+    if(!id){$('#bukaYt').hidden=true;layarDiam('Link YouTube lagu ini belum diisi. Tempel link-nya di bagian "playlist" pada CONFIG.');return;}
+    const linkYt='https://www.youtube.com/watch?v='+id;
+    $('#bukaYt').href=linkYt;
+    if(DARI_FILE){
+      $('#bukaYt').hidden=true;
+      layarDiam('Lagu baru bisa diputar di sini setelah halamannya di-upload ke GitHub Pages.',linkYt);
+      return;
+    }
+    this.classList.add('main');
+    if(!musik.paused){musikSebelumLagu=true;musik.pause();}
+    const fr=document.createElement('iframe');
+    fr.referrerPolicy='strict-origin-when-cross-origin';
+    fr.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+    fr.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1`;
+    fr.title=l.judul;fr.allow='autoplay; encrypted-media; picture-in-picture; web-share';fr.allowFullscreen=true;
+    $('#layar').innerHTML='';$('#layar').appendChild(fr);
+    $('#bukaYt').hidden=false;
+  });
+  $('#daftarLagu').appendChild(li);
+});
+
+/* ---------- 4d. Kartu semangat ---------- */
+const kisiK=$('#kisiKupon');let kuponTerbuka=0,kuponSiap=false;
+C.semangat.forEach(k=>{
+  const w=document.createElement('div');w.className='bingkai-kupon';
+  w.innerHTML=`<div class="kupon"><div class="ekor" aria-hidden="true"></div><div class="badan"><b></b><span></span></div><canvas aria-label="Gosok untuk membuka kartu"></canvas></div>`;
+  w.querySelector('.ekor').textContent=k.ikon;w.querySelector('b').textContent=k.judul;w.querySelector('span').textContent=k.catatan;
+  kisiK.appendChild(w);
+});
+function siapkanKupon(){
+  if(kuponSiap)return;kuponSiap=true;
+  $$('.kupon canvas').forEach(cv=>{
+    const r={width:cv.offsetWidth,height:cv.offsetHeight},dpr=devicePixelRatio||1;cv.width=r.width*dpr;cv.height=r.height*dpr;
+    const x=cv.getContext('2d',{willReadFrequently:true});x.scale(dpr,dpr);
+    const g=x.createLinearGradient(0,0,r.width,r.height);g.addColorStop(0,'#E9DFFF');g.addColorStop(.5,'#FFD6E7');g.addColorStop(1,'#D9F3FF');
+    x.fillStyle=g;x.fillRect(0,0,r.width,r.height);
+    x.fillStyle='rgba(58,43,92,.18)';x.font='16px Sniglet, sans-serif';
+    for(let yy=14;yy<r.height;yy+=24)for(let xx=(yy/24%2)*14;xx<r.width;xx+=28)x.fillText(Math.random()<.5?'♥':'✦',xx,yy);
+    x.fillStyle='#3A2B5C';x.font='800 19px Sniglet, sans-serif';x.textAlign='center';x.textBaseline='middle';
+    x.fillText('Gosok di sini ✨',r.width/2,r.height/2);
+    let gosok=false,hitung=0,selesai=false,titikAkhir=null;
+    const pos=e=>{const b=cv.getBoundingClientRect(),sk=cv.offsetWidth/b.width;return[(e.clientX-b.left)*sk,(e.clientY-b.top)*sk];};
+    const hapus=(a,b)=>{x.globalCompositeOperation='destination-out';x.lineWidth=38;x.lineCap='round';x.beginPath();
+      if(titikAkhir){x.moveTo(...titikAkhir);}else x.moveTo(a,b);x.lineTo(a,b);x.stroke();titikAkhir=[a,b];};
+    const cek=()=>{
+      const d=x.getImageData(0,0,cv.width,cv.height).data;let kosong=0,total=0;
+      for(let i=3;i<d.length;i+=64){total++;if(d[i]===0)kosong++;}
+      if(kosong/total>.5&&!selesai){selesai=true;cv.classList.add('hilang');kuponTerbuka++;
+        const [cx,cy]=tengahEl(cv);konfeti(cx,cy,45,.7);
+        if(kuponTerbuka===C.semangat.length)$('#teksKupon').textContent='Semua kartu sudah terbuka! Semoga kata-katanya nempel di hati 🤍';}
+    };
+    cv.addEventListener('pointerdown',e=>{gosok=true;titikAkhir=null;cv.setPointerCapture(e.pointerId);hapus(...pos(e));});
+    cv.addEventListener('pointermove',e=>{if(!gosok)return;hapus(...pos(e));if(++hitung%12===0)cek();});
+    const stop=()=>{if(gosok){gosok=false;titikAkhir=null;cek();}};
+    cv.addEventListener('pointerup',stop);cv.addEventListener('pointercancel',stop);
+    cv.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();x.clearRect(0,0,cv.width,cv.height);cek();}});
+    cv.tabIndex=0;
+  });
+}
+
+/* ---------- 5. Akhir ---------- */
+$('#fotoAkhir').appendChild(elFoto(C.fotoAkhir));
+stikerHuruf($('#judulAkhir'),'Semangat terus, ya!');
+$('#pesanAkhir').textContent=C.pesanAkhir;
+$('#balikMenu').addEventListener('click',()=>history.back());
+$('#ulang').addEventListener('click',()=>location.reload());
+
+/* ---------- Saat masuk & keluar adegan ---------- */
+function masukKe(id){
+  if(id==='menu')perbaruiProgres();
+  if(id==='hadiah')requestAnimationFrame(()=>document.fonts.ready.then(siapkanKupon));
+  if(id==='akhir'){setTimeout(()=>{hujanKonfeti();},300);stikerHuruf($('#judulAkhir'),'Semangat terus, ya!');}
+}
+function keluarDari(id){
+  if(id==='lagu'){
+    $$('.lagu').forEach(b=>b.classList.remove('main'));layarDiam('Pilih lagu di bawah, ya~');$('#bukaYt').hidden=true;
+    if(musikSebelumLagu&&musikAda){musik.play().catch(()=>{});musikSebelumLagu=false;}
+  }
+  if(id==='galeri')tutupLampu();
+}
+
+/* ---------- Mulai ---------- */
+history.replaceState({adegan:'awal'},'');
+if(C.kodeRahasia){siapkanKunci();ke('kunci');}else ke('buka');
+})();
+</script>
+</body>
+</html>
